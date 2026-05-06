@@ -345,8 +345,13 @@ export default function HeroSection() {
 
             {/* Card 4 */}
             <div className="text-center relative">
-              <img src="/product4.png" alt="" className="mx-auto h-[254px] max-sm:h-[180px] object-contain translate-y-2 max-sm:translate-y-0 relative z-10" />
-              <div className="mt-[-50px] max-sm:mt-[-50px] bg-[#1D2C60] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between">
+              <img
+                src="/product5.png"
+                alt=""
+                className="mx-auto h-[324px] max-sm:h-[200px] object-contain 
+             -translate-y-6 max-sm:-translate-y-2 relative z-10"
+              />
+              <div className="mt-[-120px] max-sm:mt-[-50px] bg-[#1D2C60] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between">
                 <div>
                   <h3 className="text-white text-[24px] font-poppins font-semibold mt-16 max-sm:mt-8">Automated Panels</h3>
                   <p className="text-[14px] text-[#C9C9C9] font-poppins mt-4">
@@ -529,6 +534,49 @@ export default function HeroSection() {
               <p className="text-[15px] text-[#535C76] font-poppins font-regular mt-2">{item.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="w-full px-4 sm:px-6 md:px-10 lg:px-[80px] xl:px-10 py-10 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto">
+
+          {/* Heading */}
+          <h2 className="text-[28px] sm:text-[32px] md:text-[36px] lg:text-[40px] font-poppins font-semibold text-center text-[#1D2C60]">
+            Our Work Showcase
+          </h2>
+
+          {/* Subtitle */}
+          <p className="text-[#535C76] text-[14px] sm:text-[15px] md:text-[16px] lg:text-[18px] mt-3 mb-10 md:mb-16 max-w-2xl mx-auto text-center font-poppins">
+            A glimpse into our expertise, innovation, and real-world project execution.
+          </p>
+
+          {/* Videos */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+
+            {/* Video 1 */}
+            <a href="/video1.mp4" target="_blank">
+              <video
+                src="/video1.mp4"
+                className="w-full h-[220px] sm:h-[280px] md:h-[350px] lg:h-[420px] xl:h-[450px] object-cover rounded-xl shadow-lg"
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+            </a>
+
+            {/* Video 2 */}
+            <a href="/video2.mp4" target="_blank">
+              <video
+                src="/video2.mp4"
+                className="w-full h-[220px] sm:h-[280px] md:h-[350px] lg:h-[420px] xl:h-[450px] object-cover rounded-xl shadow-lg"
+                autoPlay
+                loop
+                muted
+                playsInline
+              />
+            </a>
+          </div>
         </div>
       </section>
 

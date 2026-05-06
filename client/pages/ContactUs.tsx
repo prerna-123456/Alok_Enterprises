@@ -12,7 +12,8 @@ import { MdOutlineMail } from "react-icons/md";
 
 export default function ContactUs() {
 
-    const [formData, setFormData] = useState({
+  // ✅ FORM STATE
+  const [formData, setFormData] = useState({
   firstName: "",
   lastName: "",
   email: "",
@@ -27,37 +28,40 @@ const handleChange = (e) => {
   });
 };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  // ✅ SUBMIT
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
 
-  try {
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    const data = await res.json();
-
-    if (data.success) {
-      alert("Message sent successfully ✅");
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        message: "",
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
-    } else {
-      alert("Failed to send ❌");
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        alert("Message sent successfully ✅");
+
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+      } else {
+        alert(data.error || "Failed to send ❌");
+      }
+
+    } catch (error) {
+      console.error(error);
+      alert("Server error ❌");
     }
-  } catch (error) {
-    console.error(error);
-    alert("Error ❌");
-  }
-};
+  };
 
   {/* CTA */ }
   const sectionRef6 = useRef(null);
