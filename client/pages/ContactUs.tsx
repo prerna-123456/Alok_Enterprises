@@ -12,56 +12,62 @@ import { MdOutlineMail } from "react-icons/md";
 
 export default function ContactUs() {
 
+  const [isSending, setIsSending] = useState(false);
+
   // ✅ FORM STATE
   const [formData, setFormData] = useState({
-  firstName: "",
-  lastName: "",
-  email: "",
-  phone: "",
-  message: "",
-});
-
-const handleChange = (e) => {
-  setFormData({
-    ...formData,
-    [e.target.name]: e.target.value,
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    message: "",
   });
-};
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   // ✅ SUBMIT
   const handleSubmit = async (e: any) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+  setIsSending(true);
+
+  try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+
+    if (res.ok && data.success) {
+      alert("Message sent successfully ✅");
+
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        message: "",
       });
-
-      const data = await res.json();
-
-      if (res.ok && data.success) {
-        alert("Message sent successfully ✅");
-
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          message: "",
-        });
-      } else {
-        alert(data.error || "Failed to send ❌");
-      }
-
-    } catch (error) {
-      console.error(error);
-      alert("Server error ❌");
+    } else {
+      alert(data.error || "Failed to send ❌");
     }
-  };
+  } catch (error) {
+    console.error(error);
+    alert("Server error ❌");
+  } finally {
+    // Sending complete hone ke baad button normal ho jayega
+    setIsSending(false);
+  }
+};
 
   {/* CTA */ }
   const sectionRef6 = useRef(null);
@@ -194,118 +200,120 @@ const handleChange = (e) => {
           </h1>
 
           <p className="text-white text-[18px] max-sm:text-[14px] mt-3 font-poppins font-medium">
-            Home <span className="mx-1 md:mx-2">›</span> Contact Us
+            <a href="/">Home </a><span className="mx-1 md:mx-2">›</span> Contact Us
           </p>
         </div>
       </section>
 
       {/* Form */}
       <section ref={sectionRef1} className="w-full min-h-screen bg-white flex items-center justify-center py-20 max-sm:py-12">
-  <div className="max-w-6xl w-full px-6 max-sm:px-6">
-    <div className={`text-center mb-12 max-sm:mb-8 ${visible1 ? "animate-slideInTogether" : "opacity-0"}`}>
-      <h1 className="font-bold font-poppins text-[50px] max-sm:text-[28px] max-lg:text-[38px] text-[#1D2C60]">Get in Touch With Us</h1>
-      <p className="text-[#535C76] text-[18px] max-sm:text-[14px] font-poppins mt-4">
-       We're here to answer your questions and guide you <br className="max-sm:hidden" />about Alok Enterprise.
-      </p> 
-    </div>
-
-    <div className="grid md:grid-cols-2 max-sm:grid-cols-1 gap-10 items-start">
-      {/* Form */}
-      <form 
-      onSubmit={handleSubmit}
-      className={`border border-[#1D2C60] rounded-xl p-6 max-sm:p-4 bg-white shadow-sm ${visible1 ? "animate-fadeLeft" : "opacity-0"}`}>
-
-        <h2 className="text-[24px] max-sm:text-[20px] font-poppins font-semibold text-[#1D2C60] mb-6">Send us a message</h2>
-
-        <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-[31px] max-sm:gap-4 mb-[28px] max-sm:mb-4">
-          <input
-            type="text"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            placeholder="First name"
-            className="border border-[#1D2C60]/30 rounded-[8px] p-3 w-full outline-none text-[14px] font-poppins text-[#1D2C60]"
-          />
-          <input
-            type="text"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            placeholder="Last Name"
-            className="border border-[#1D2C60]/30 rounded-[8px] p-3 w-full outline-none text-[14px] font-poppins text-[#1D2C60]"
-          />
-        </div>
-
-        <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-[31px] max-sm:gap-4 mb-[28px] max-sm:mb-4">
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="John@example.com"
-            className="border border-[#1D2C60]/30 rounded-[8px] p-3 w-full outline-none text-[14px] font-poppins text-[#1D2C60]"
-          />
-          <input
-            type="text"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            placeholder="+91 8362353676"
-            className="border border-[#1D2C60]/30 rounded-[8px] p-3 w-full outline-none text-[14px] font-poppins text-[#1D2C60]"
-          />
-        </div>
-
-        <textarea
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          placeholder="Please provide details about your requirements..."
-          className="border border-[#1D2C60]/30 rounded-[8px] p-3 w-full h-32 mb-6 outline-none text-[14px] font-poppins text-[#1D2C60]"
-        />
-
-        <button 
-        type="submit"
-        className="bg-[#1D2C60] text-white px-6 py-3 rounded-[8px] font-poppins font-medium w-full max-sm:w-full">
-          Send Message
-        </button>
-      </form>
-
-      {/* Contact Info */}
-      <div className={`space-y-12 max-sm:space-y-8 ml-10 max-sm:ml-0 max-lg:ml-0 mt-10 max-sm:mt-2 ${visible1 ? "animate-fadeRight" : "opacity-0"}`}>
-        <div className="flex items-start gap-7">
-          <div className="bg-[#1D2C60] text-white text-[24px] p-3.5 rounded-[10px] shrink-0"><LuPhone /></div>
-          <div>
-            <h3 className="font-poppins font-semibold text-[18px] text-[#1D2C60]">Phone</h3>
-            <p className="text-[#535C76] font-poppins max-sm:text-[14px]">
-              +91 8362353676 <span className="mx-1">|</span> +91 9886676791
+        <div className="max-w-6xl w-full px-6 max-sm:px-6">
+          <div className={`text-center mb-12 max-sm:mb-8 ${visible1 ? "animate-slideInTogether" : "opacity-0"}`}>
+            <h1 className="font-bold font-poppins text-[50px] max-sm:text-[28px] max-lg:text-[38px] text-[#1D2C60]">Get in Touch With Us</h1>
+            <p className="text-[#535C76] text-[18px] max-sm:text-[14px] font-poppins mt-4">
+              We're here to answer your questions and guide you <br className="max-sm:hidden" />about Alok Enterprise.
             </p>
           </div>
-        </div>
 
-        <div className="flex items-start gap-7">
-          <div className="bg-[#1D2C60] text-white text-[24px] p-3.5 rounded-[10px] shrink-0"><MdOutlineEmail /></div>
-          <div>
-            <h3 className="font-poppins font-semibold text-[18px] text-[#1D2C60]">Email</h3>
-            <p className="text-[#535C76] font-poppins max-sm:text-[14px]">ankalikaraa@gmail.com</p>
+          <div className="grid md:grid-cols-2 max-sm:grid-cols-1 gap-10 items-start">
+            {/* Form */}
+            <form
+              onSubmit={handleSubmit}
+              className={`border border-[#1D2C60] rounded-xl p-6 max-sm:p-4 bg-white shadow-sm ${visible1 ? "animate-fadeLeft" : "opacity-0"}`}>
+
+              <h2 className="text-[24px] max-sm:text-[20px] font-poppins font-semibold text-[#1D2C60] mb-6">Send us a message</h2>
+
+              <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-[31px] max-sm:gap-4 mb-[28px] max-sm:mb-4">
+                <input
+                  type="text"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  placeholder="John"
+                  className="border border-[#1D2C60]/30 rounded-[8px] p-3 w-full outline-none text-[14px] font-poppins text-[#1D2C60]"
+                />
+                <input
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  placeholder="Smith"
+                  className="border border-[#1D2C60]/30 rounded-[8px] p-3 w-full outline-none text-[14px] font-poppins text-[#1D2C60]"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 max-sm:grid-cols-1 gap-[31px] max-sm:gap-4 mb-[28px] max-sm:mb-4">
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="John@example.com"
+                  className="border border-[#1D2C60]/30 rounded-[8px] p-3 w-full outline-none text-[14px] font-poppins text-[#1D2C60]"
+                />
+                <input
+                  type="text"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="+91 8362353676"
+                  className="border border-[#1D2C60]/30 rounded-[8px] p-3 w-full outline-none text-[14px] font-poppins text-[#1D2C60]"
+                />
+              </div>
+
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Please provide details about your requirements..."
+                className="border border-[#1D2C60]/30 rounded-[8px] p-3 w-full h-32 mb-6 outline-none text-[14px] font-poppins text-[#1D2C60]"
+              />
+
+              <button
+                type="submit"
+                disabled={isSending}
+                className="bg-[#1D2C60] text-white px-6 py-3 rounded-[8px] font-poppins font-medium w-full max-sm:w-full transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {isSending ? "Sending..." : "Send Message"}
+              </button>
+            </form>
+
+            {/* Contact Info */}
+            <div className={`space-y-12 max-sm:space-y-8 ml-10 max-sm:ml-0 max-lg:ml-0 mt-10 max-sm:mt-2 ${visible1 ? "animate-fadeRight" : "opacity-0"}`}>
+              <div className="flex items-start gap-7">
+                <div className="bg-[#1D2C60] text-white text-[24px] p-3.5 rounded-[10px] shrink-0"><LuPhone /></div>
+                <div>
+                  <h3 className="font-poppins font-semibold text-[18px] text-[#1D2C60]">Phone</h3>
+                  <p className="text-[#535C76] font-poppins max-sm:text-[14px]">
+                    +91 8362353676 <span className="mx-1">|</span> +91 9886676791
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-7">
+                <div className="bg-[#1D2C60] text-white text-[24px] p-3.5 rounded-[10px] shrink-0"><MdOutlineEmail /></div>
+                <div>
+                  <h3 className="font-poppins font-semibold text-[18px] text-[#1D2C60]">Email</h3>
+                  <p className="text-[#535C76] font-poppins max-sm:text-[14px]"> info@alokenterprises.com</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-7">
+                <div className="bg-[#1D2C60] text-white text-[24px] p-3.5 rounded-[10px] shrink-0"><HiOutlineLocationMarker /></div>
+                <div>
+                  <h3 className="font-poppins font-semibold text-[18px] text-[#1D2C60]">Office Address</h3>
+                  <p className="text-[#535C76] font-poppins max-sm:text-[14px]">
+                    12, Madiman Complex, <br />
+                    Neeligin Road, Hubli, Karnataka, India 580029
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div className="flex items-start gap-7">
-          <div className="bg-[#1D2C60] text-white text-[24px] p-3.5 rounded-[10px] shrink-0"><HiOutlineLocationMarker /></div>
-          <div>
-            <h3 className="font-poppins font-semibold text-[18px] text-[#1D2C60]">Office Address</h3>
-            <p className="text-[#535C76] font-poppins max-sm:text-[14px]">
-              12, Madiman Complex, <br />
-              Neeligin Road, Hubli 580029
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-{/* CTA */}
+      {/* CTA */}
       <section
         ref={sectionRef6}
         className="w-full h-[460px] max-sm:h-auto max-sm:py-16 bg-cover bg-center relative"
@@ -321,9 +329,11 @@ const handleChange = (e) => {
             Contact us today to discuss your requirements. We provide tailored
             Electrical Control Panels designed for your Industry.
           </p>
-          <button className="mt-8 bg-white text-[#1D2C60] px-6 py-3 rounded-[7px] text-[16px] font-poppins font-medium">
-            Get Free Quote
-          </button>
+          <a href="/contact-us">
+            <button className="mt-8 bg-white text-[#1D2C60] px-6 py-3 rounded-[7px] text-[16px] font-poppins font-medium">
+              Get Free Quote
+            </button>
+          </a>
         </div>
       </section>
 
@@ -335,7 +345,7 @@ const handleChange = (e) => {
           <div className="max-sm:flex max-sm:flex-col max-sm:items-center max-sm:text-center">
             <a href="/"><img src="/logo.png" alt="logo" className="h-[111px] mb-4" /></a>
             <p className="text-[16px] text-white leading-relaxed font-poppins font-regular">
-              The proper Footer on proper time can preserve you protection. We assist you make sure everybody forward.
+              Alok Enterprises offers quality mobiles, accessories, and tech solutions with trusted service and expert guidance.
             </p>
             <div className="flex items-center gap-4 mt-6 max-sm:justify-center">
               <a href="https://wa.me/918362353676" target="_blank" rel="noopener noreferrer"
@@ -373,11 +383,11 @@ const handleChange = (e) => {
             </p>
             <p className="flex items-center gap-3 text-[16px] text-white mt-4 font-poppins max-sm:justify-center">
               <MdOutlineMail className="text-[#1F2D61] text-[22px]" />
-              <a href="mailto:ankalikaraa@gmail.com" className="hover:underline">ankalikaraa@gmail.com</a>
+              <a href="mailto:info@alokenterprises.com" className="hover:underline">info@alokenterprises.com</a>
             </p>
             <p className="flex items-start gap-3 text-[16px] text-white mt-4 font-poppins max-sm:justify-center">
               <HiOutlineLocationMarker className="text-[#1F2D61] text-[22px]" />
-              <span>12, Madiman Complex, <br />Neeligin Road, Hubli 580029</span>
+              <span>12, Madiman Complex, <br />Neeligin Road, Hubli, Karnataka, India 580029</span>
             </p>
           </div>
 
@@ -397,7 +407,15 @@ const handleChange = (e) => {
 
       <div className="bg-[#182B48] py-4 text-center">
         <p className="text-[14px] text-white font-poppins">
-          © 2025 Alok Enterprises. All Rights Reserved. Designed By Spitel
+          © 2025 Alok Enterprises. All Rights Reserved. Designed By{" "}
+          <a
+            href="https://spitel.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className=""
+          >
+            Spitel
+          </a>
         </p>
       </div>
     </div>

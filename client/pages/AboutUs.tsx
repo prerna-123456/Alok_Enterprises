@@ -32,6 +32,17 @@ export default function AboutUs() {
     return () => { if (sectionRef2.current) observer.unobserve(sectionRef2.current); };
   }, []);
 
+  const sectionRef3 = useRef(null);
+  const [visible3, setVisible3] = useState(false);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible3(true); },
+      { threshold: 0.3 }
+    );
+    if (sectionRef3.current) observer.observe(sectionRef3.current);
+    return () => { if (sectionRef3.current) observer.unobserve(sectionRef3.current); };
+  }, []);
+
   const sectionRef5 = useRef(null);
   const [visible5, setVisible5] = useState(false);
   useEffect(() => {
@@ -109,7 +120,7 @@ export default function AboutUs() {
         <div className="relative px-[123px] max-lg:px-8 max-sm:px-6 mt-28 max-sm:mt-20 animate-fadeLeft">
           <h1 className="text-white text-[50px] max-sm:text-[36px] font-semibold font-poppins">About Us</h1>
           <p className="text-white text-[18px] max-sm:text-[15px] mt-3 font-poppins font-medium">
-            Home <span className="mx-1 md:mx-2">›</span> About Us
+            <a href="/"> Home </a><span className="mx-1 md:mx-2">›</span> About Us
           </p>
         </div>
       </section>
@@ -263,10 +274,11 @@ export default function AboutUs() {
       <footer className="w-full bg-[#6A6A6A] text-white pt-16 pb-16 px-[123px] max-lg:px-8 max-sm:px-5">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
 
+          {/* Logo + About */}
           <div className="max-sm:flex max-sm:flex-col max-sm:items-center max-sm:text-center">
             <a href="/"><img src="/logo.png" alt="logo" className="h-[111px] mb-4" /></a>
             <p className="text-[16px] text-white leading-relaxed font-poppins font-regular">
-              The proper Footer on proper time can preserve you protection. We assist you make sure everybody forward.
+              Alok Enterprises offers quality mobiles, accessories, and tech solutions with trusted service and expert guidance.
             </p>
             <div className="flex items-center gap-4 mt-6 max-sm:justify-center">
               <a href="https://wa.me/918362353676" target="_blank" rel="noopener noreferrer"
@@ -279,6 +291,7 @@ export default function AboutUs() {
             </div>
           </div>
 
+          {/* Quick Links */}
           <div className="ml-8 max-lg:ml-0 max-sm:flex max-sm:flex-col max-sm:items-center max-sm:text-center">
             <h3 className="text-[18px] font-medium mb-4 font-poppins mr-4">Quick Links</h3>
             <ul className="space-y-3 text-[16px] text-white font-poppins font-regular">
@@ -290,6 +303,7 @@ export default function AboutUs() {
             </ul>
           </div>
 
+          {/* Contact Info */}
           <div className="max-sm:flex max-sm:flex-col max-sm:items-center max-sm:text-center">
             <h3 className="text-[18px] font-medium mb-4 font-poppins">Contact Us</h3>
             <p className="flex items-center gap-3 text-[16px] text-white font-poppins max-sm:justify-center">
@@ -302,14 +316,15 @@ export default function AboutUs() {
             </p>
             <p className="flex items-center gap-3 text-[16px] text-white mt-4 font-poppins max-sm:justify-center">
               <MdOutlineMail className="text-[#1F2D61] text-[22px]" />
-              <a href="mailto:ankalikaraa@gmail.com" className="hover:underline">ankalikaraa@gmail.com</a>
+              <a href="mailto:info@alokenterprises.com" className="hover:underline">info@alokenterprises.com</a>
             </p>
             <p className="flex items-start gap-3 text-[16px] text-white mt-4 font-poppins max-sm:justify-center">
               <HiOutlineLocationMarker className="text-[#1F2D61] text-[22px]" />
-              <span>12, Madiman Complex, <br />Neeligin Road, Hubli 580029</span>
+              <span>12, Madiman Complex, <br />Neeligin Road, Hubli, Karnataka, India 580029</span>
             </p>
           </div>
 
+          {/* Location */}
           <div className="max-sm:flex max-sm:flex-col max-sm:items-center max-sm:text-center">
             <h3 className="text-[18px] font-medium mb-4 font-poppins">Location</h3>
             <div className="w-[280px] h-[198px] border-[4px] border-white rounded-[10px] overflow-hidden mt-4">
@@ -326,7 +341,15 @@ export default function AboutUs() {
       {/* Divider */}
       <div className="bg-[#182B48] py-4 text-center">
         <p className="text-[14px] text-white font-poppins">
-          © 2025 Alok Enterprises. All Rights Reserved. Designed By Spitel
+          © 2025 Alok Enterprises. All Rights Reserved. Designed By{" "}
+          <a
+            href="https://spitel.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className=""
+          >
+            Spitel
+          </a>
         </p>
       </div>
 

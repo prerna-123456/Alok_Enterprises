@@ -34,6 +34,27 @@ export default function HeroSection() {
       name: "Anil Deshpande",
       role: "Client",
     },
+    {
+      id: 4,
+      image: "/Vector.png",
+      text: "“Excellent workmanship and timely delivery. The control panel was installed seamlessly and has been performing reliably since day one.”",
+      name: "Rajesh Kulkarni",
+      role: "Plant Manager",
+    },
+    {
+      id: 5,
+      image: "/Vector.png",
+      text: "“The team provided a dependable solution with great attention to quality and safety. Their professionalism exceeded our expectations.”",
+      name: "Vikram Patil",
+      role: "Operations Head",
+    },
+    {
+      id: 6,
+      image: "/Vector.png",
+      text: "“From consultation to installation, the entire process was smooth. The panel quality and after-sales support have been outstanding.”",
+      name: "Sandeep Joshi",
+      role: "Maintenance Engineer",
+    },
   ];
 
   const [current, setCurrent] = useState(0);
@@ -89,13 +110,30 @@ export default function HeroSection() {
 
   const sectionRef3 = useRef(null);
   const [visible3, setVisible3] = useState(false);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setVisible3(true); },
-      { threshold: 0.3 }
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible3(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px",
+      }
     );
-    if (sectionRef3.current) observer.observe(sectionRef3.current);
-    return () => { if (sectionRef3.current) observer.unobserve(sectionRef3.current); };
+
+    const current = sectionRef3.current;
+
+    if (current) {
+      observer.observe(current);
+    }
+
+    return () => {
+      if (current) observer.unobserve(current);
+    };
   }, []);
 
   const sectionRef4 = useRef(null);
@@ -188,31 +226,211 @@ export default function HeroSection() {
 
         {/* 🔹 Background Image */}
         <div
-          className="w-full h-[600px] md:h-[700px] bg-cover bg-center"
+          className="relative w-full h-[600px] md:h-[700px] bg-cover bg-center"
           style={{ backgroundImage: "url('/hero-bg.png')" }}
         >
+          {/* Overlay */}
+          <div className="block lg:hidden absolute inset-0 z-0 bg-gradient-to-r from-black/75 via-black/55 to-black/80" />
           <div className="w-full h-full flex items-center px-[123px] max-lg:px-8 max-sm:px-6">
-            <div className="max-w-7xl text-white mt-36 max-sm:mt-24 animate-fadeLeft">
-              <h1 className="text-[40px] max-sm:text-[28px] font-semibold font-poppins leading-tight">
-                EMPOWERING INDUSTRIES
-              </h1>
-              <h2 className="text-[40px] max-sm:text-[24px] mt-4 font-regular font-poppins">
-                WITH RELIABLE CONTROL
-              </h2>
-              <h2 className="text-[40px] max-sm:text-[24px] mt-2 font-semibold font-poppins">
-                SOLUTIONS
-              </h2>
-              <p className="mt-6 text-white text-[18px] max-sm:text-[15px] font-poppins font-regular">
-                High-quality Electrical control panels & Automation solutions <br className="max-sm:hidden" />
-                designed for performance, safety and global reliability
-              </p>
-              <div className="flex gap-4 mt-8">
-                <button className="bg-[#E6E8EE] border border-[#1D2C60] text-[#1D2C60] hover:bg-[#1D2C60] hover:text-[#E6E8EE] text-[16px] px-6 py-3 rounded-[10px] font-regular font-poppins transition">
-                  View Product
-                </button>
-                <button className="bg-[#E6E8EE] border border-[#1D2C60] text-[#1D2C60] text-[16px] hover:bg-[#1D2C60] hover:text-[#E6E8EE] px-6 py-3 rounded-[10px] font-regular font-poppins transition">
-                  Contact Us
-                </button>
+
+            <div className="w-full flex items-center justify-between gap-10">
+
+              {/* LEFT - HERO CONTENT */}
+              <div className="max-w-3xl text-white mt-32 max-sm:mt-24 animate-fadeLeft">
+
+                <h1 className="text-[40px] max-sm:text-[28px] font-semibold font-poppins leading-tight">
+                  EMPOWERING INDUSTRIES
+                </h1>
+
+                <h2 className="text-[40px] max-sm:text-[24px] mt-2 font-regular font-poppins">
+                  WITH RELIABLE CONTROL
+                </h2>
+
+                <h2 className="text-[40px] max-sm:text-[24px] mt-1 lg:mt-0 font-semibold font-poppins">
+                  SOLUTIONS
+                </h2>
+
+                <p className="mt-6 text-white text-[18px] max-sm:text-[15px] font-poppins font-regular">
+                  High-quality Electrical control panels & Automation solutions
+                  <br className="max-sm:hidden" />
+                  designed for performance, safety and global reliability
+                </p>
+
+                {/* RIGHT - ISO BADGE */}
+                {/* 🔹 ISO 9001:2015 CERTIFICATION BADGE */}
+                <div className="flex gap-4 mt-8">
+                  <a href="/products">
+                    <button className="bg-[#E6E8EE] border border-[#1D2C60] text-[#1D2C60] hover:bg-[#1D2C60] hover:text-[#E6E8EE] text-[16px] px-6 py-3 rounded-[10px] font-regular font-poppins transition">
+                      View Product
+                    </button>
+                  </a>
+
+                  <a href="/contact-us">
+                    <button className="bg-[#E6E8EE] border border-[#1D2C60] text-[#1D2C60] hover:bg-[#1D2C60] hover:text-[#E6E8EE] text-[16px] px-6 py-3 rounded-[10px] font-regular font-poppins transition">
+                      Contact Us
+                    </button>
+                  </a>
+                </div>
+
+
+                {/* 🔹 ISO 9001:2015 HORIZONTAL CERTIFICATION BADGE */}
+                <a
+                  href="#quality-certification"
+                  className="
+                    inline-block
+                    mt-6
+                    cursor-pointer
+                  "
+                >
+                  <div
+                    className="
+                      flex
+                      items-center
+                      bg-transparent
+                      rounded-[10px]
+                      px-4
+                      py-3
+                      sm:px-6
+                      sm:py-2
+                      shadow-[0_8px_25px_rgba(0,0,0,0.35)]
+                      border
+                      border-white/55
+                      transition-all
+                      duration-300
+                      hover:scale-[1.03]
+                      hover:shadow-[0_12px_35px_rgba(0,0,0,0.45)]
+                      w-fit
+                      max-w-full
+                    "
+                  >
+
+                    {/* 🔹 Shield Icon */}
+                    <div
+                      className="
+                        w-[58px]
+                        h-[58px]
+                        sm:w-[58px]
+                        sm:h-[58px]
+                        rounded-full
+                        border-[1px]
+                        border-white/55
+                        flex
+                        items-center
+                        justify-center
+                        shrink-0
+                      "
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        className="
+                          w-[30px]
+                          h-[30px]
+                          sm:w-[36px]
+                          sm:h-[36px]
+                          text-white
+                        "
+                      >
+                        <defs>
+                          <mask id="shieldCutout">
+                            {/* Shield visible */}
+                            <rect width="24" height="24" fill="black" />
+
+                            {/* Shield shape */}
+                            <path
+                              d="M12 3L19 6V11C19 15.5 16.1 19.3 12 21C7.9 19.3 5 15.5 5 11V6L12 3Z"
+                              fill="white"
+                            />
+
+                            {/* Tick transparent / cut-out */}
+                            <path
+                              d="M9 12L11 14L15 10"
+                              fill="none"
+                              stroke="black"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </mask>
+                        </defs>
+
+                        {/* White shield with transparent tick */}
+                        <rect
+                          width="24"
+                          height="24"
+                          fill="currentColor"
+                          mask="url(#shieldCutout)"
+                        />
+                      </svg>
+                    </div>
+
+
+                    {/* 🔹 Vertical Divider */}
+                    <div
+                      className="
+                        h-[55px]
+                        sm:h-[65px]
+                        w-[0.5px]
+                        bg-white/55
+                        mx-3
+                        sm:mx-4
+                      "
+                    />
+
+
+                    {/* 🔹 Certification Text */}
+                    <div className="flex flex-col justify-center text-white">
+
+                      {/* ISO Standard */}
+                      <span
+                        className="
+                          text-[18px]
+                          sm:text-[23px]
+                          md:text-[20px]
+                          font-bold
+                          font-poppins
+                          leading-tight
+                          whitespace-nowrap
+                        "
+                      >
+                        ISO 9001 : 2015
+                      </span>
+
+                      {/* Certified Company */}
+                      <span
+                        className="
+                          text-[11px]
+                          sm:text-[14px]
+                          md:text-[13px]
+                          font-bold
+                          font-poppins
+                          tracking-[1.5px]
+                          sm:tracking-[2px]
+                          leading-tight
+                          whitespace-nowrap
+                        "
+                      >
+                        CERTIFIED COMPANY
+                      </span>
+
+                      {/* Company Name */}
+                      <span
+                        className="
+                          text-[8px]
+                          sm:text-[10px]
+                          md:text-[9px]
+                          font-medium
+                          font-poppins
+                          tracking-[1.5px]
+                          mt-1
+                          leading-tight
+                          whitespace-nowrap
+                        "
+                      >
+                        ALOK ENTERPRISES
+                      </span>
+                    </div>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
@@ -234,9 +452,11 @@ export default function HeroSection() {
               Conveyor Applications, Motor Control Centers, Industrial Washing Machines, Special
               Purpose Machines, Complexes, Apartments, Malls, Hospitals, Buildings, Custom oriented applications.
             </p>
-            <button className="mt-6 bg-[#E6E8EE] border border-[#1D2C60] hover:bg-[#1D2C60] hover:text-[#E6E8EE] px-5 py-2 rounded-[7px] text-[#182B48] font-regular font-poppins">
-              Read More
-            </button>
+            <a href="/about-us">
+              <button className="mt-6 bg-[#E6E8EE] border border-[#1D2C60] hover:bg-[#1D2C60] hover:text-[#E6E8EE] px-5 py-2 rounded-[7px] text-[#182B48] font-regular font-poppins">
+                Read More
+              </button>
+            </a>
           </div>
           <div className={`flex-1 flex justify-center ${visible ? "animate-fadeRight" : "opacity-0"}`}>
             <img
@@ -287,12 +507,12 @@ export default function HeroSection() {
             Electrical Control Panels tailored for Industrial Applications
           </p>
 
-          <div className={`grid md:grid-cols-4 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-8 mt-16 max-sm:mt-8 ${visible2 ? "animate-fadeUp" : "opacity-0"}`}>
+          <div className={`grid md:grid-cols-4 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-8 mt-16 max-sm:mt-8 items-stretch ${visible2 ? "animate-fadeUp" : "opacity-0"}`}>
 
             {/* Card 1 */}
-            <div className="text-center relative">
+            <div className="text-center relative flex flex-col h-full">
               <img src="/product1.png" alt="" className="mx-auto h-[254px] max-sm:h-[180px] object-contain relative z-10" />
-              <div className="mt-[-50px] max-sm:mt-[-50px] bg-[#E6E8EE] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between">
+              <div className="mt-[-50px] bg-[#E6E8EE] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between flex-1">
                 <div>
                   <h3 className="text-[#1D2C60] text-[22px] font-poppins font-semibold mt-16 max-sm:mt-8">APFC Panels</h3>
                   <p className="text-[14px] text-[#535C76] font-poppins mt-4">
@@ -300,7 +520,7 @@ export default function HeroSection() {
                   </p>
                 </div>
                 <a href="/APFC-pannel">
-                  <button className="mt-6 mb-2 border border-[#1D2C60] hover:bg-[#1D2C60] hover:text-[#E6E8EE] px-5 py-2 rounded-md text-[16px] text-[#1D2C60] font-poppins w-fit mx-auto flex items-center gap-2">
+                  <button className="mt-10 mb-2 border border-[#1D2C60] hover:bg-[#1D2C60] hover:text-[#E6E8EE] px-5 py-2 rounded-md text-[16px] text-[#1D2C60] font-poppins w-fit mx-auto flex items-center gap-2">
                     <span>View Product</span><FaArrowRight size={16} />
                   </button>
                 </a>
@@ -308,9 +528,9 @@ export default function HeroSection() {
             </div>
 
             {/* Card 2 */}
-            <div className="text-center relative">
+            <div className="text-center relative flex flex-col h-full">
               <img src="/product2.png" alt="" className="mx-auto h-[254px] max-sm:h-[180px] object-contain translate-y-10 max-sm:translate-y-0 relative z-10" />
-              <div className="mt-[-50px] max-sm:mt-[-60px] bg-[#1D2C60] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between">
+              <div className="mt-[-50px] max-sm:mt-[-60px] bg-[#1D2C60] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between flex-1">
                 <div>
                   <h3 className="text-white text-[24px] font-poppins font-semibold mt-16 max-sm:mt-8">Motor Control Centers</h3>
                   <p className="text-[14px] text-[#C9C9C9] font-poppins mt-4">
@@ -326,9 +546,9 @@ export default function HeroSection() {
             </div>
 
             {/* Card 3 */}
-            <div className="text-center relative">
+            <div className="text-center relative flex flex-col h-full">
               <img src="/product3.png" alt="" className="mx-auto h-[254px] max-sm:h-[180px] object-contain translate-y-6 max-sm:translate-y-0 relative z-10" />
-              <div className="mt-[-50px] max-sm:mt-[-70px] bg-[#E6E8EE] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between">
+              <div className="mt-[-50px] max-sm:mt-[-70px] bg-[#E6E8EE] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between flex-1">
                 <div>
                   <h3 className="text-[#1D2C60] text-[24px] font-poppins font-semibold mt-16 max-sm:mt-8">Power Distribution Panels</h3>
                   <p className="text-[14px] text-[#535C76] font-poppins mt-4">
@@ -344,22 +564,22 @@ export default function HeroSection() {
             </div>
 
             {/* Card 4 */}
-            <div className="text-center relative">
+            <div className="text-center relative flex flex-col h-full">
               <img
                 src="/product5.png"
                 alt=""
-                className="mx-auto h-[324px] max-sm:h-[200px] object-contain 
-             -translate-y-6 max-sm:-translate-y-2 relative z-10"
+                className="mx-auto h-[324px] max-sm:h-[250px] object-contain 
+             -translate-y-6 max-sm:-translate-y-0 relative z-10"
               />
-              <div className="mt-[-120px] max-sm:mt-[-50px] bg-[#1D2C60] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between">
+              <div className="mt-[-120px] max-sm:mt-[-50px] bg-[#1D2C60] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between flex-1">
                 <div>
-                  <h3 className="text-white text-[24px] font-poppins font-semibold mt-16 max-sm:mt-8">Automated Panels</h3>
+                  <h3 className="text-white text-[24px] font-poppins font-semibold mt-16 max-sm:mt-8">Automation Panels</h3>
                   <p className="text-[14px] text-[#C9C9C9] font-poppins mt-4">
                     Automated Panels are control panels designed to automatically manage and monitor industrial processes and equipment.
                   </p>
                 </div>
                 <a href="/automated-panels">
-                  <button className="mt-6 mb-2 bg-white border border-[#1D2C60] hover:bg-[#1D2C60] hover:text-[#E6E8EE] hover:border-[#E6E8EE] px-5 py-2 rounded-md text-[16px] text-[#1D2C60] font-poppins w-fit mx-auto flex items-center gap-2">
+                  <button className="mt-10 mb-2 bg-white border border-[#1D2C60] hover:bg-[#1D2C60] hover:text-[#E6E8EE] hover:border-[#E6E8EE] px-5 py-2 rounded-md text-[16px] text-[#1D2C60] font-poppins w-fit mx-auto flex items-center gap-2">
                     <span>View Product</span><FaArrowRight size={16} />
                   </button>
                 </a>
@@ -377,57 +597,145 @@ export default function HeroSection() {
       >
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative mx-auto px-[123px] max-lg:px-8 max-sm:px-6 text-white">
-          <h2 className={`text-[40px] max-sm:text-[28px] font-semibold font-poppins uppercase ${visible3 ? "animate-fadeLeft" : "opacity-0"}`}>
+          <h2 className={`text-[40px] max-sm:text-[28px] font-semibold font-poppins uppercase ${visible3 ? "animate-fadeLeft" : "opacity-100"}`}>
             Industries We Serve
           </h2>
-          <p className={`mt-4 text-[18px] max-sm:text-[15px] max-w-2xl text-[#C9C9C9] font-poppins font-regular ${visible3 ? "animate-fadeLeft" : "opacity-0"}`}>
+          <p className={`mt-4 text-[18px] max-sm:text-[15px] max-w-2xl text-[#C9C9C9] font-poppins font-regular ${visible3 ? "animate-fadeLeft" : "opacity-100"}`}>
             Our control solutions are trusted across diverse industrial and
             commercial sectors, designed to handle demanding environments
             and operational needs.
           </p>
 
-          {/* Desktop layout - exact same */}
-          <div className={`mt-16 grid grid-cols-6 gap-8 max-lg:hidden ${visible3 ? "animate-fadeUp" : "opacity-0"}`}>
-            <div className="col-span-2 flex justify-center ml-40">
-              <div className="bg-white/20 border border-white backdrop-blur-sm rounded-xl p-4 w-[199px] h-[194px] text-center">
-                <img src="/serve1.png" alt="" className="mx-auto h-[120px] mb-4" />
-                <p className="text-[16px] text-white font-poppins font-semibold">Cotton Ginning</p>
-              </div>
-            </div>
+          {/* =====================================================
+    DESKTOP INDUSTRIES LAYOUT
+===================================================== */}
+
+          <div
+            className={`mt-16 grid grid-cols-6 gap-x-0 gap-y-10 max-lg:hidden ${visible3 ? "animate-fadeUp" : "opacity-100"
+              }`}
+          >
+
+            {/* ================= TOP ROW ================= */}
+
+            {/* Cotton Ginning */}
             <div className="col-span-2 flex justify-center">
-              <div className="bg-white/20 border border-white backdrop-blur-sm rounded-xl p-4 w-[199px] h-[194px] text-center">
-                <img src="/serve2.png" alt="" className="mx-auto h-[120px] mb-4" />
-                <p className="text-[16px] text-white font-poppins font-semibold -mt-3">Hospitals and Hotels</p>
+              <div className="h-[194px] w-[199px] rounded-xl border border-white bg-white/20 p-4 text-center backdrop-blur-sm">
+
+                <img
+                  src="/serve1.png"
+                  alt="Cotton Ginning"
+                  className="mx-auto mb-4 h-[120px] object-contain"
+                />
+
+                <p className="text-[16px] font-poppins font-semibold text-white">
+                  Cotton Ginning
+                </p>
+
               </div>
             </div>
-            <div className="col-span-2 flex justify-center mr-40">
-              <div className="bg-white/20 border border-white backdrop-blur-sm rounded-xl p-4 w-[199px] h-[194px] text-center">
-                <img src="/serve3.png" alt="" className="mx-auto h-[120px] mb-4" />
-                <p className="text-[16px] text-white font-poppins font-semibold">Steel Plants</p>
+
+
+            {/* Hospitals and Hotels */}
+            <div className="col-span-2 flex justify-center">
+              <div className="h-[194px] w-[199px] rounded-xl border border-white bg-white/20 p-4 text-center backdrop-blur-sm">
+
+                <img
+                  src="/serve2.png"
+                  alt="Hospitals and Hotels"
+                  className="mx-auto mb-4 h-[120px] object-contain"
+                />
+
+                <p className="-mt-3 text-[16px] font-poppins font-semibold text-white">
+                  Hospitals and Hotels
+                </p>
+
               </div>
             </div>
-            <div className="col-span-3 flex justify-end mr-16 mt-4">
-              <div className="bg-white/20 border border-white backdrop-blur-sm rounded-xl p-4 w-[199px] h-[194px] text-center">
-                <img src="/serve4.png" alt="" className="mx-auto h-[120px] mb-4" />
-                <p className="text-[16px] text-white font-poppins font-semibold whitespace-nowrap -ml-1.5">Automobile Industries</p>
+
+
+            {/* Steel Plants */}
+            <div className="col-span-2 flex justify-center">
+              <div className="h-[194px] w-[199px] rounded-xl border border-white bg-white/20 p-4 text-center backdrop-blur-sm">
+
+                <img
+                  src="/serve3.png"
+                  alt="Steel Plants"
+                  className="mx-auto mb-4 h-[120px] object-contain"
+                />
+
+                <p className="text-[16px] font-poppins font-semibold text-white">
+                  Steel Plants
+                </p>
+
               </div>
             </div>
-            <div className="col-span-3 flex justify-start ml-16 mt-4">
-              <div className="bg-white/20 border border-white backdrop-blur-sm rounded-xl p-4 w-[199px] h-[194px] text-center">
-                <img src="/serve5.png" alt="" className="mx-auto h-[95px] mb-4 mt-4" />
-                <p className="text-[16px] text-white font-poppins font-semibold whitespace-nowrap -ml-1">Mining Industries</p>
+
+
+            {/* ================= BOTTOM ROW ================= */}
+
+            {/* Automobile Industries */}
+            <div className="col-span-2 flex justify-center">
+              <div className="h-[194px] w-[199px] rounded-xl border border-white bg-white/20 p-4 text-center backdrop-blur-sm">
+
+                <img
+                  src="/serve4.png"
+                  alt="Automobile Industries"
+                  className="mx-auto mb-4 h-[120px] object-contain"
+                />
+
+                <p className="whitespace-nowrap text-[16px] font-poppins font-semibold text-white">
+                  Automobile Industries
+                </p>
+
+              </div>
+            </div>
+
+
+            {/* Iron Ore Industries */}
+            <div className="col-span-2 flex justify-center">
+              <div className="h-[194px] w-[199px] rounded-xl border border-white bg-white/20 p-4 text-center backdrop-blur-sm">
+
+                <img
+                  src="/serve5.png"
+                  alt="Iron Ore Industries"
+                  className="mx-auto mb-4 mt-4 h-[95px] object-contain"
+                />
+
+                <p className="whitespace-nowrap text-[16px] font-poppins font-semibold text-white">
+                  Iron Ore Industries
+                </p>
+
+              </div>
+            </div>
+
+
+            {/* Foundries */}
+            <div className="col-span-2 flex justify-center">
+              <div className="h-[194px] w-[199px] rounded-xl border border-white bg-white/20 p-4 text-center backdrop-blur-sm">
+
+                <img
+                  src="/serve6.png"
+                  alt="Foundries"
+                  className="mx-auto mb-4 h-[120px] object-contain"
+                />
+
+                <p className="text-[16px] font-poppins font-semibold text-white">
+                  Foundries
+                </p>
+
               </div>
             </div>
           </div>
 
           {/* Mobile/Tablet layout - grid */}
-          <div className={`mt-16 hidden max-lg:grid grid-cols-2 max-sm:grid-cols-2 gap-6 justify-items-center ${visible3 ? "animate-fadeUp" : "opacity-0"}`}>
+          <div className={`mt-16 hidden max-lg:grid grid-cols-2 max-sm:grid-cols-2 gap-6 justify-items-center ${visible3 ? "animate-fadeUp" : "opacity-100"}`}>
             {[
               { src: "/serve1.png", label: "Cotton Ginning" },
               { src: "/serve2.png", label: "Hospitals and Hotels" },
               { src: "/serve3.png", label: "Steel Plants" },
               { src: "/serve4.png", label: "Automobile Industries" },
               { src: "/serve5.png", label: "Mining Industries" },
+              { src: "/serve6.png", label: "Foundries" },
             ].map((item, i) => (
               <div key={i} className="bg-white/20 border border-white backdrop-blur-sm rounded-xl p-4 w-[159px] h-[154px] text-center">
                 <img src={item.src} alt="" className="mx-auto h-[80px] mb-1 object-contain" />
@@ -469,9 +777,57 @@ export default function HeroSection() {
               ))}
             </div>
           </div>
-          <div className={`hidden flex-1 md:flex justify-center ${visible4 ? "animate-fadeRight" : "opacity-0"}`}>
+          <div className={`flex-1 md:flex justify-center ${visible4 ? "animate-fadeRight" : "opacity-0"}`}>
             <img src="/global.png" alt="map" className="w-[587px] h-[336px] max-lg:w-full max-lg:h-auto object-contain" />
           </div>
+        </div>
+      </section>
+
+      {/* ================= ISO CERTIFICATE ================= */}
+
+      <section id="quality-certification" ref={sectionRef3} className="bg-white py-20 px-6 md:px-16">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+
+          {/* Right Certificate */}
+          <div className={`flex justify-center ${visible3 ? "animate-slideInTogether" : "opacity-0"}`}>
+            <img
+              src="/certificate.png"
+              alt="ISO 9001:2015 Certificate"
+              className="w-full max-w-md rounded-xl mb-10 md:mb-0 shadow-2xl border border-gray-200 hover:scale-105 transition duration-300 md:-ml-40"
+            />
+          </div>
+
+          {/* Left Content */}
+          <div className="md:-ml-20">
+            <p className={`text-[#1D2C60] uppercase tracking-widest font-bold font-poppins mb-5 text-[20px] ${visible3 ? "animate-fadeUp" : "opacity-0"}`}>
+              Quality Certification
+            </p>
+
+            <h2 className={`text-[28px] md:text-[40px] font-bold text-[#1D2C60] mb-3 ${visible3 ? "animate-fadeUp" : "opacity-0"}`}>
+              ISO 9001:2015 Certified
+            </h2>
+
+            <p className={`text-[#535C76] text-lg leading-8 mb-8 font-poppins font-regular ${visible3 ? "animate-fadeUp" : "opacity-0"}`}>
+              Alok Enterprises is certified under ISO 9001:2015, demonstrating our
+              commitment to delivering high-quality electrical control panel
+              solutions while maintaining international quality standards.
+            </p>
+
+            <div className={`flex flex-wrap gap-4 ${visible3 ? "animate-fadeUp" : "opacity-0"}`}>
+              <div className="bg-blue-50 rounded-lg">
+                <h4 className="font-semibold text-[#1D2C60] text-[18px] font-poppins">
+                  TÜV India Certified
+                </h4>
+              </div>
+
+              <div className="bg-blue-50 px-5 rounded-lg">
+                <h4 className="font-semibold text-[#1D2C60] text-[18px] font-poppins">
+                  ISO 9001:2015
+                </h4>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -621,11 +977,13 @@ export default function HeroSection() {
         </div>
 
         <div className="flex justify-center mt-16 gap-2 items-center">
-          {testimonialsData.map((_, i) => (
+          {[0, 1, 2].map((dot) => (
             <div
-              key={i}
-              onClick={() => setCurrent(i)}
-              className={`rounded-full cursor-pointer transition-all duration-300 ${i === current ? "w-[14px] h-[14px] bg-[#1D2C60] -mt-0.5" : "w-[10px] h-[10px] bg-[#BDBDBD]"
+              key={dot}
+              onClick={() => setCurrent(dot)}
+              className={`rounded-full cursor-pointer transition-all duration-300 ${current % 3 === dot
+                ? "w-[14px] h-[14px] bg-[#1D2C60] -mt-0.5"
+                : "w-[10px] h-[10px] bg-[#BDBDBD]"
                 }`}
             />
           ))}
@@ -648,9 +1006,11 @@ export default function HeroSection() {
             Contact us today to discuss your requirements. We provide tailored
             Electrical Control Panels designed for your Industry.
           </p>
-          <button className="mt-8 bg-white text-[#1D2C60] px-6 py-3 rounded-[7px] text-[16px] font-poppins font-medium">
-            Get Free Quote
-          </button>
+          <a href="/contact-us">
+            <button className="mt-8 bg-white text-[#1D2C60] px-6 py-3 rounded-[7px] text-[16px] font-poppins font-medium">
+              Get Free Quote
+            </button>
+          </a>
         </div>
       </section>
 
@@ -662,7 +1022,7 @@ export default function HeroSection() {
           <div className="max-sm:flex max-sm:flex-col max-sm:items-center max-sm:text-center">
             <a href="/"><img src="/logo.png" alt="logo" className="h-[111px] mb-4" /></a>
             <p className="text-[16px] text-white leading-relaxed font-poppins font-regular">
-              The proper Footer on proper time can preserve you protection. We assist you make sure everybody forward.
+              Alok Enterprises offers quality mobiles, accessories, and tech solutions with trusted service and expert guidance.
             </p>
             <div className="flex items-center gap-4 mt-6 max-sm:justify-center">
               <a href="https://wa.me/918362353676" target="_blank" rel="noopener noreferrer"
@@ -700,11 +1060,11 @@ export default function HeroSection() {
             </p>
             <p className="flex items-center gap-3 text-[16px] text-white mt-4 font-poppins max-sm:justify-center">
               <MdOutlineMail className="text-[#1F2D61] text-[22px]" />
-              <a href="mailto:ankalikaraa@gmail.com" className="hover:underline">ankalikaraa@gmail.com</a>
+              <a href="mailto:info@alokenterprises.com" className="hover:underline">info@alokenterprises.com</a>
             </p>
             <p className="flex items-start gap-3 text-[16px] text-white mt-4 font-poppins max-sm:justify-center">
               <HiOutlineLocationMarker className="text-[#1F2D61] text-[22px]" />
-              <span>12, Madiman Complex, <br />Neeligin Road, Hubli 580029</span>
+              <span>12, Madiman Complex, <br />Neeligin Road, Hubli, Karnataka, India 580029</span>
             </p>
           </div>
 
@@ -724,7 +1084,15 @@ export default function HeroSection() {
 
       <div className="bg-[#182B48] py-4 text-center">
         <p className="text-[14px] text-white font-poppins">
-          © 2025 Alok Enterprises. All Rights Reserved. Designed By Spitel
+          © 2025 Alok Enterprises. All Rights Reserved. Designed By{" "}
+          <a
+            href="https://spitel.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className=""
+          >
+            Spitel
+          </a>
         </p>
       </div>
     </div>

@@ -130,22 +130,22 @@ export default function AutomatedPanels() {
       </nav>
 
       {/* Hero Section */}
-      <section className="bg-white pt-28 pb-16 md:pt-36 md:pb-20 lg:py-52 px-4 md:px-10 lg:px-[123px]">
+      <section className="bg-white pt-28 pb-16 md:pt-36 md:pb-20 lg:py-40 px-4 md:px-10 lg:px-[123px]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-0">
 
           {/* Left Image */}
           <div className="w-full md:w-1/2">
             <img
-              src="/panel1.png"
+              src="/product5.png"
               alt="Automated Panel"
-              className="w-full h-[260px] md:h-[320px] lg:h-[400px] object-contain lg:-ml-10 animate-fadeLeft"
+              className="w-full h-[260px] md:h-[320px] lg:h-[450px] object-contain lg:-ml-10 animate-fadeLeft"
             />
           </div>
 
           {/* Right Content */}
           <div className="w-full md:w-1/2 text-center md:text-left lg:mr-12 animate-fadeRight">
             <h2 className="text-[28px] md:text-[34px] lg:text-[40px] font-semibold font-poppins text-[#1D2C60] mb-4 lg:mb-6">
-              Automated Panels
+              Automation Panels
             </h2>
 
             <p className="text-[#535C76] mb-4 leading-relaxed text-[14px] font-poppins font-regular">
@@ -229,9 +229,11 @@ export default function AutomatedPanels() {
             Contact us today to discuss your requirements. We provide tailored
             Electrical Control Panels designed for your Industry.
           </p>
-          <button className="mt-8 bg-white text-[#1D2C60] px-6 py-3 rounded-[7px] text-[16px] font-poppins font-medium">
-            Get Free Quote
-          </button>
+          <a href="/contact-us">
+            <button className="mt-8 bg-white text-[#1D2C60] px-6 py-3 rounded-[7px] text-[16px] font-poppins font-medium">
+              Get Free Quote
+            </button>
+          </a>
         </div>
       </section>
 
@@ -243,7 +245,7 @@ export default function AutomatedPanels() {
           <div className="max-sm:flex max-sm:flex-col max-sm:items-center max-sm:text-center">
             <a href="/"><img src="/logo.png" alt="logo" className="h-[111px] mb-4" /></a>
             <p className="text-[16px] text-white leading-relaxed font-poppins font-regular">
-              The proper Footer on proper time can preserve you protection. We assist you make sure everybody forward.
+              Alok Enterprises offers quality mobiles, accessories, and tech solutions with trusted service and expert guidance.
             </p>
             <div className="flex items-center gap-4 mt-6 max-sm:justify-center">
               <a href="https://wa.me/918362353676" target="_blank" rel="noopener noreferrer"
@@ -281,11 +283,11 @@ export default function AutomatedPanels() {
             </p>
             <p className="flex items-center gap-3 text-[16px] text-white mt-4 font-poppins max-sm:justify-center">
               <MdOutlineMail className="text-[#1F2D61] text-[22px]" />
-              <a href="mailto:ankalikaraa@gmail.com" className="hover:underline">ankalikaraa@gmail.com</a>
+              <a href="mailto:info@alokenterprises.com" className="hover:underline">info@alokenterprises.com</a>
             </p>
             <p className="flex items-start gap-3 text-[16px] text-white mt-4 font-poppins max-sm:justify-center">
               <HiOutlineLocationMarker className="text-[#1F2D61] text-[22px]" />
-              <span>12, Madiman Complex, <br />Neeligin Road, Hubli 580029</span>
+              <span>12, Madiman Complex, <br />Neeligin Road, Hubli, Karnataka, India 580029</span>
             </p>
           </div>
 
@@ -305,7 +307,15 @@ export default function AutomatedPanels() {
 
       <div className="bg-[#182B48] py-4 text-center">
         <p className="text-[14px] text-white font-poppins">
-          © 2025 Alok Enterprises. All Rights Reserved. Designed By Spitel
+          © 2025 Alok Enterprises. All Rights Reserved. Designed By{" "}
+          <a
+            href="https://spitel.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className=""
+          >
+            Spitel
+          </a>
         </p>
       </div>
     </div>

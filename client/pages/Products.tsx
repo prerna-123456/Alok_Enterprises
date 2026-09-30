@@ -141,7 +141,7 @@ export default function Products() {
             Our Products
           </h1>
           <p className="text-white text-[15px] md:text-[17px] lg:text-[18px] mt-3 font-poppins font-medium">
-            Home <span className="mx-1 md:mx-2">›</span> Our Products
+            <a href="/">Home </a><span className="mx-1 md:mx-2">›</span> Our Products
           </p>
         </div>
       </section>
@@ -153,12 +153,12 @@ export default function Products() {
             PRODUCTS
           </h2>
 
-          <div className={`grid md:grid-cols-4 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-8 mt-16 max-sm:mt-8 ${visible2 ? "animate-fadeUp" : "opacity-0"}`}>
+          <div className={`grid md:grid-cols-4 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-8 mt-16 max-sm:mt-8 items-stretch ${visible2 ? "animate-fadeUp" : "opacity-0"}`}>
 
             {/* Card 1 */}
-            <div className="text-center relative">
+            <div className="text-center relative flex flex-col h-full">
               <img src="/product1.png" alt="" className="mx-auto h-[254px] max-sm:h-[180px] object-contain relative z-10" />
-              <div className="mt-[-50px] max-sm:mt-[-50px] bg-[#E6E8EE] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between">
+              <div className="mt-[-50px] bg-[#E6E8EE] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between flex-1">
                 <div>
                   <h3 className="text-[#1D2C60] text-[22px] font-poppins font-semibold mt-16 max-sm:mt-8">APFC Panels</h3>
                   <p className="text-[14px] text-[#535C76] font-poppins mt-4">
@@ -166,7 +166,7 @@ export default function Products() {
                   </p>
                 </div>
                 <a href="/APFC-pannel">
-                  <button className="mt-6 mb-2 border border-[#1D2C60] hover:bg-[#1D2C60] hover:text-[#E6E8EE] px-5 py-2 rounded-md text-[16px] text-[#1D2C60] font-poppins w-fit mx-auto flex items-center gap-2">
+                  <button className="mt-10 mb-2 border border-[#1D2C60] hover:bg-[#1D2C60] hover:text-[#E6E8EE] px-5 py-2 rounded-md text-[16px] text-[#1D2C60] font-poppins w-fit mx-auto flex items-center gap-2">
                     <span>View Product</span><FaArrowRight size={16} />
                   </button>
                 </a>
@@ -174,9 +174,9 @@ export default function Products() {
             </div>
 
             {/* Card 2 */}
-            <div className="text-center relative">
+            <div className="text-center relative flex flex-col h-full">
               <img src="/product2.png" alt="" className="mx-auto h-[254px] max-sm:h-[180px] object-contain translate-y-10 max-sm:translate-y-0 relative z-10" />
-              <div className="mt-[-50px] max-sm:mt-[-60px] bg-[#1D2C60] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between">
+              <div className="mt-[-50px] max-sm:mt-[-60px] bg-[#1D2C60] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between flex-1">
                 <div>
                   <h3 className="text-white text-[24px] font-poppins font-semibold mt-16 max-sm:mt-8">Motor Control Centers</h3>
                   <p className="text-[14px] text-[#C9C9C9] font-poppins mt-4">
@@ -192,9 +192,9 @@ export default function Products() {
             </div>
 
             {/* Card 3 */}
-            <div className="text-center relative">
+            <div className="text-center relative flex flex-col h-full">
               <img src="/product3.png" alt="" className="mx-auto h-[254px] max-sm:h-[180px] object-contain translate-y-6 max-sm:translate-y-0 relative z-10" />
-              <div className="mt-[-50px] max-sm:mt-[-70px] bg-[#E6E8EE] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between">
+              <div className="mt-[-50px] max-sm:mt-[-70px] bg-[#E6E8EE] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between flex-1">
                 <div>
                   <h3 className="text-[#1D2C60] text-[24px] font-poppins font-semibold mt-16 max-sm:mt-8">Power Distribution Panels</h3>
                   <p className="text-[14px] text-[#535C76] font-poppins mt-4">
@@ -210,17 +210,22 @@ export default function Products() {
             </div>
 
             {/* Card 4 */}
-            <div className="text-center relative">
-              <img src="/product4.png" alt="" className="mx-auto h-[254px] max-sm:h-[180px] object-contain translate-y-2 max-sm:translate-y-0 relative z-10" />
-              <div className="mt-[-50px] max-sm:mt-[-50px] bg-[#1D2C60] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between">
+            <div className="text-center relative flex flex-col h-full">
+              <img
+                src="/product5.png"
+                alt=""
+                className="mx-auto h-[324px] max-sm:h-[250px] object-contain 
+                   -translate-y-6 max-sm:-translate-y-0 relative z-10"
+              />
+              <div className="mt-[-120px] max-sm:mt-[-50px] bg-[#1D2C60] rounded-xl shadow-md p-6 max-sm:pt-10 h-[326px] max-sm:h-auto flex flex-col justify-between flex-1">
                 <div>
-                  <h3 className="text-white text-[24px] font-poppins font-semibold mt-16 max-sm:mt-8">Automated Panels</h3>
+                  <h3 className="text-white text-[24px] font-poppins font-semibold mt-16 max-sm:mt-8">Automation Panels</h3>
                   <p className="text-[14px] text-[#C9C9C9] font-poppins mt-4">
                     Automated Panels are control panels designed to automatically manage and monitor industrial processes and equipment.
                   </p>
                 </div>
                 <a href="/automated-panels">
-                  <button className="mt-6 mb-2 bg-white border border-[#1D2C60] hover:bg-[#1D2C60] hover:text-[#E6E8EE] hover:border-[#E6E8EE] px-5 py-2 rounded-md text-[16px] text-[#1D2C60] font-poppins w-fit mx-auto flex items-center gap-2">
+                  <button className="mt-10 mb-2 bg-white border border-[#1D2C60] hover:bg-[#1D2C60] hover:text-[#E6E8EE] hover:border-[#E6E8EE] px-5 py-2 rounded-md text-[16px] text-[#1D2C60] font-poppins w-fit mx-auto flex items-center gap-2">
                     <span>View Product</span><FaArrowRight size={16} />
                   </button>
                 </a>
@@ -246,9 +251,11 @@ export default function Products() {
             Contact us today to discuss your requirements. We provide tailored
             Electrical Control Panels designed for your Industry.
           </p>
-          <button className="mt-8 bg-white text-[#1D2C60] px-6 py-3 rounded-[7px] text-[16px] font-poppins font-medium">
-            Get Free Quote
-          </button>
+          <a href="/contact-us">
+            <button className="mt-8 bg-white text-[#1D2C60] px-6 py-3 rounded-[7px] text-[16px] font-poppins font-medium">
+              Get Free Quote
+            </button>
+          </a>
         </div>
       </section>
 
@@ -260,7 +267,7 @@ export default function Products() {
           <div className="max-sm:flex max-sm:flex-col max-sm:items-center max-sm:text-center">
             <a href="/"><img src="/logo.png" alt="logo" className="h-[111px] mb-4" /></a>
             <p className="text-[16px] text-white leading-relaxed font-poppins font-regular">
-              The proper Footer on proper time can preserve you protection. We assist you make sure everybody forward.
+              Alok Enterprises offers quality mobiles, accessories, and tech solutions with trusted service and expert guidance.
             </p>
             <div className="flex items-center gap-4 mt-6 max-sm:justify-center">
               <a href="https://wa.me/918362353676" target="_blank" rel="noopener noreferrer"
@@ -298,11 +305,11 @@ export default function Products() {
             </p>
             <p className="flex items-center gap-3 text-[16px] text-white mt-4 font-poppins max-sm:justify-center">
               <MdOutlineMail className="text-[#1F2D61] text-[22px]" />
-              <a href="mailto:ankalikaraa@gmail.com" className="hover:underline">ankalikaraa@gmail.com</a>
+              <a href="mailto:info@alokenterprises.com" className="hover:underline">info@alokenterprises.com</a>
             </p>
             <p className="flex items-start gap-3 text-[16px] text-white mt-4 font-poppins max-sm:justify-center">
               <HiOutlineLocationMarker className="text-[#1F2D61] text-[22px]" />
-              <span>12, Madiman Complex, <br />Neeligin Road, Hubli 580029</span>
+              <span>12, Madiman Complex, <br />Neeligin Road, Hubli, Karnataka, India 580029</span>
             </p>
           </div>
 
@@ -322,7 +329,15 @@ export default function Products() {
 
       <div className="bg-[#182B48] py-4 text-center">
         <p className="text-[14px] text-white font-poppins">
-          © 2025 Alok Enterprises. All Rights Reserved. Designed By Spitel
+          © 2025 Alok Enterprises. All Rights Reserved. Designed By{" "}
+          <a
+            href="https://spitel.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className=""
+          >
+            Spitel
+          </a>
         </p>
       </div>
     </div>
